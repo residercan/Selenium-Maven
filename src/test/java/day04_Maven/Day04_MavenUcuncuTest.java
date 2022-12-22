@@ -29,6 +29,11 @@ public class Day04_MavenUcuncuTest {
 
 
 //        4-Sayfa basliginin “Google” ifadesi icerdigini test edin
+            String actualsayfaBasligi = driver.getTitle();
+            String expectedsayfaBasligi = "Google";
+            if(actualsayfaBasligi.equals(expectedsayfaBasligi)){
+                System.out.println("Sayfa başlığı testi passed");
+            } else System.out.println("Sayfa başlığı testi failed");
 //        5-Arama cubuguna “Nutella” yazip aratin
             driver.findElement(By.xpath("//*[@class='gLFyf']")).sendKeys("Nutella", Keys.ENTER);
 //        6-Bulunan sonuc sayisini yazdirin
