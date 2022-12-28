@@ -1,4 +1,4 @@
-package practice;
+package practice_day01;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class Day01 {
+public class Day01_C01 {
 
 
 
