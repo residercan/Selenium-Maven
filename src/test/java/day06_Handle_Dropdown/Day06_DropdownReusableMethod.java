@@ -23,6 +23,7 @@ public class Day06_DropdownReusableMethod {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofDays(15));
+        driver.get("https://testcenter.techproeducation.com/index.php?page=dropdown");
 
     }
 
@@ -43,8 +44,13 @@ public class Day06_DropdownReusableMethod {
 
     @Test
     public void selectFromDropdown(){
-        driver.get("https://testcenter.techproeducation.com/index.php?page=dropdown");
-        selectFromDropdown(driver.findElement(By.xpath("//select[@id='year']")), "2005");
+        selectFromDropdown(driver.findElement(By.xpath("//select[@id='year']")), "2005");//2005 i secti
+        selectFromDropdown(driver.findElement(By.id("month")),"November");
+        selectFromDropdown(driver.findElement(By.id("day")),"10");
+        selectFromDropdown(driver.findElement(By.id("state")), "Texas");
+
+
     }
 
 }
+
