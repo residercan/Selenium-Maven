@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TestBase {
     //Test Base'i abstract yapmamızın sebebi bu sınıfın objesini oluşturmak istemiyorum.
@@ -35,7 +37,14 @@ public abstract class TestBase {
     }
 
 
-    public static void switchToWindow(String targetTitle) {
+
+//    MULTIPLE WINDOW:
+//    1 parametre alir : Gecis Yapmak Istedigim sayfanin Title
+//    ORNEK:
+//    driver.get("https://the-internet.herokuapp.com/windows");
+//    switchToWindow("New Window");
+//    switchToWindow("The Internet")
+    public static void switchToWindow (String targetTitle) {
         String origin = driver.getWindowHandle();
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
@@ -45,4 +54,26 @@ public abstract class TestBase {
         }
         driver.switchTo().window(origin);
     }
+
+    //windowNumber sıfır (0)'dan başlıyor.
+    //index numarasını parametre olarak alır.
+    //ve o indexli pencereye geçiş yapar.
+    public static void switchToWindow (int windowNumber){
+        List<String> list = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(list.get(windowNumber));
+    }
+
+
+
+    /*   HARD WAIT:
+     @param : second
+    */
+    public static void waitFor(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
