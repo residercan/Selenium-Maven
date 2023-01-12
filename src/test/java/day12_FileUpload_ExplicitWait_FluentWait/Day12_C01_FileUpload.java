@@ -1,4 +1,4 @@
-package day12_;
+package day12_FileUpload_ExplicitWait_FluentWait;
 
 import org.junit.Assert;
 import org.junit.Test;
