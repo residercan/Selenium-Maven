@@ -1,6 +1,7 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.*;
@@ -11,8 +12,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -185,6 +190,30 @@ public abstract class TestBase {
                 .ignoring(NoSuchElementException.class);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return element;
+    }
+
+                    //   SCREENSHOTS
+    public void takeScreenShotOfPage() throws IOException {
+//        1. Take screenshot
+        File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//       2. Save screenshot
+//        getting the current time as string to use in teh screenshot name, previous screenshots will be kept
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+//        Path of screenshot save folder               folder / folder    /file name
+        String path = System.getProperty("user.dir")+"/test-output/Screenshots/"+currentTime+"image.png";
+        FileUtils.copyFile(image,new File(path));
+    }
+    //    SCREENSHOT
+//    @params: WebElement
+//
+    public void takeScreenshotOfElement(WebElement element) throws IOException {
+//        1. take screenshot
+        File image = element.getScreenshotAs(OutputType.FILE);
+//        2. save screenshot
+//        path
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String path = System.getProperty("user.dir")+"/test-output/Screenshots/"+currentTime+"image.png";
+        FileUtils.copyFile(image,new File(path));
     }
 
 
